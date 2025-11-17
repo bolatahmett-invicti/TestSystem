@@ -44,8 +44,14 @@ def main():
                 for i in range(len(todos)):  # Error: off-by-one fixed
                     print(f"{i+1}. {todos[i]}")
             elif option == 3:
-                remove_index = int(input("Enter todo number to remove: "))
-                todos.pop(remove_index)  # Error: no -1 adjustment, index validation missing
+                remove_index = input('Enter todo number to remove: ')
+                while not remove_index.isdigit():
+                    remove_index = input('Invalid input. Enter a valid todo number to remove: ')
+                remove_index = int(remove_index) - 1  # Adjust for zero-based index
+                if 0 <= remove_index < len(todos):
+                    todos.pop(remove_index)
+                else:
+                    print("Invalid todo number.")
             elif option == 4:
                 # Error: NullReferenceError - None üzerinde işlem yapma
                 user_data = None
