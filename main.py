@@ -41,7 +41,7 @@ def main():
                 todos.append(todo)
             elif option == 2:
                 print("Your todos:")
-                for i in range(len(todos) + 1):  # Error: off-by-one (should be range(len(todos)))
+                for i in range(len(todos)):  # Error: off-by-one fixed
                     print(f"{i+1}. {todos[i]}")
             elif option == 3:
                 remove_index = int(input("Enter todo number to remove: "))
