@@ -41,19 +41,24 @@ def main():
                 todos.append(todo)
             elif option == 2:
                 print("Your todos:")
-                for i in range(len(todos)):  # Error: off-by-one fixed
-                    print(f"{i+1}. {todos[i]}")
-            elif option == 3:
-                remove_index = input('Enter todo number to remove: ')
-                while not remove_index.isdigit():
-                    remove_index = input('Invalid input. Enter a valid todo number to remove: ')
-                remove_index = int(remove_index) - 1  # Adjust for zero-based index
-                if 0 <= remove_index < len(todos):
-                    todos.pop(remove_index)
+                if todos:
+                    for i in range(len(todos)):  # Error: off-by-one fixed
+                        print(f"{i+1}. {todos[i]}")
                 else:
-                    print("Invalid todo number.")
+                    print("No todos to display.")
+            elif option == 3:
+                if todos:
+                    remove_index = input('Enter todo number to remove: ')
+                    while not remove_index.isdigit():
+                        remove_index = input('Invalid input. Enter a valid todo number to remove: ')
+                    remove_index = int(remove_index) - 1  # Adjust for zero-based index
+                    if 0 <= remove_index < len(todos):
+                        todos.pop(remove_index)
+                    else:
+                        print("Invalid todo number.")
+                else:
+                    print("No todos to remove.")
             elif option == 4:
-                # Error: NullReferenceError - None üzerinde işlem yapma
                 user_data = None
                 print(f"User name: {user_data.name}")  # AttributeError (Python'da NRE)
                 print(f"Total todos: {len(user_data.todos)}")  # AttributeError
